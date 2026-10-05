@@ -1,0 +1,160 @@
+/* Arc: の公開ページ。ほかの会社のフォント・解析・広告は読み込まない（ページを開いた人の情報を外へ出さないため） */
+
+:root {
+  --ground: #f5f8fb;
+  --surface: #ffffff;
+  --ink: #17202c;
+  --muted: #566272;
+  --rule: #d9e1ea;
+  --accent: #2a689f;
+  --sky-top: #bcdaf2;
+  --sky-mid: #dcebf7;
+  --mark: #0f1b2b;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0d1421;
+    --surface: #131c2b;
+    --ink: #e6eaf0;
+    --muted: #9aa6b5;
+    --rule: #25314a;
+    --accent: #f0ac66;
+    --sky-top: #16264a;
+    --sky-mid: #2c2a42;
+    --mark: #f4f1ec;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0d1421;
+  --surface: #131c2b;
+  --ink: #e6eaf0;
+  --muted: #9aa6b5;
+  --rule: #25314a;
+  --accent: #f0ac66;
+  --sky-top: #16264a;
+  --sky-mid: #2c2a42;
+  --mark: #f4f1ec;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(to bottom, var(--sky-top), var(--sky-mid) 120px, var(--ground) 300px) no-repeat,
+    var(--ground);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", Meiryo, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  font-feature-settings: "palt" 0;
+}
+
+.page {
+  max-width: 41rem;
+  margin: 0 auto;
+  padding: 0 16px 64px;
+}
+
+/* 題字 */
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 0 8px;
+}
+.wordmark {
+  color: var(--mark);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  line-height: 1;
+}
+.wordmark:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.masthead nav { display: flex; gap: 16px; font-size: 0.875rem; }
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.4;
+  margin: 40px 0 4px;
+  text-wrap: balance;
+}
+.dateline { margin: 0 0 32px; color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+
+h2 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 48px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  text-wrap: balance;
+  scroll-margin-top: 16px;
+}
+h3 {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  margin: 28px 0 8px;
+  scroll-margin-top: 16px;
+}
+.num { font-variant-numeric: tabular-nums; margin-right: 0.5em; color: var(--muted); font-weight: 600; }
+
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 12px; padding-left: 1.4em; }
+li { margin: 2px 0; }
+li > ul, li > ol { margin: 2px 0 4px; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+strong { font-weight: 600; }
+.label { font-weight: 600; }
+code, .host { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.9em; overflow-wrap: anywhere; }
+
+/* 目次 */
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 0 0 8px;
+}
+.toc ol { margin: 0; padding-left: 1.6em; columns: 2; column-gap: 24px; font-size: 0.9375rem; }
+.toc li { break-inside: avoid; }
+@media (max-width: 30rem) { .toc ol { columns: 1; } }
+
+/* 端末の中の情報の表 */
+.table-wrap { overflow-x: auto; margin: 0 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; line-height: 1.7; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+th { color: var(--muted); font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.04em; }
+td:first-child { width: 52%; }
+
+/* トップの窓口 */
+.lead { font-size: 1.0625rem; margin: 36px 0 8px; }
+.contact {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.contact .mail { font-size: 1.0625rem; font-weight: 600; overflow-wrap: anywhere; }
+
+footer {
+  margin-top: 56px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.8;
+}
+footer p { margin: 0 0 6px; }
